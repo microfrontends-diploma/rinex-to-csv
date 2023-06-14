@@ -19,5 +19,6 @@ module.exports = (webpackConfigEnv, argv) => {
         src: path.resolve(__dirname, "src"),
       },
     },
+    externals: ["@microfrontends-diploma/shared-code", "@mui/icons-material", "@mui/material", "axios", "lodash", "single-spa-react"]
   });
 };
