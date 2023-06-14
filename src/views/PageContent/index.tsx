@@ -47,30 +47,33 @@ const RinexToCSVContent = () => {
   }, [currentStep, stepsDisabledState]);
 
   return (
-    <Box>
-      <Stepper activeStep={currentStep}>
-        {steps.map((step) => (
-          <Step key={step}>
-            <StepLabel>{step}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      {formContent}
-      <Grid container spacing={1}>
-        {currentStep === RinexToCSVSteps.RESULT && (
-          <Grid item xs={4}>
-            <Button onClick={handleReset}>Вернуться к загрузке файлов</Button>
-          </Grid>
-        )}
-        {currentStep !== RinexToCSVSteps.RESULT && (
-          <Grid item xs={2}>
-            <Button disabled={nextStepDisabled} onClick={handleNextStep}>
-              Следующий шаг
-            </Button>
-          </Grid>
-        )}
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <Stepper activeStep={currentStep}>
+          {steps.map((step) => (
+            <Step key={step}>
+              <StepLabel>{step}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
       </Grid>
-    </Box>
+
+      <Grid item xs={12}>
+        {formContent}
+      </Grid>
+      {currentStep === RinexToCSVSteps.RESULT && (
+        <Grid item xs={4}>
+          <Button variant="contained" onClick={handleReset}>Вернуться к загрузке файлов</Button>
+        </Grid>
+      )}
+      {currentStep !== RinexToCSVSteps.RESULT && (
+        <Grid item xs={2}>
+          <Button variant="contained" disabled={nextStepDisabled} onClick={handleNextStep}>
+            Следующий шаг
+          </Button>
+        </Grid>
+      )}
+    </Grid>
   );
 };
 

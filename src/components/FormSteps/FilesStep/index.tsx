@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { validate } from "./utils";
 import { FileUploadServerResponse } from "src/api/dto/rinex-to-csv.dto";
@@ -42,8 +42,6 @@ function FilesStep({ onStepCompleted }: FormStepsCommonProps) {
             api.rinexToCsvService
               .uploadFile(formData, type)
               .then((response: FileUploadServerResponse) => {
-                console.log("fule upload response", response);
-
                 type === "rinex" ? setRinexFileUploaded(true) : setNavFileUploaded(true);
                 setFilesState((prevState) => ({
                   ...prevState,
@@ -72,13 +70,17 @@ function FilesStep({ onStepCompleted }: FormStepsCommonProps) {
     };
 
   return (
-    <Box>
-      <Typography>Загрузите Rinex файл</Typography>
-      <FileUploader id='rinexFile' onChange={onFileChanged("rinex")} />
+    <Grid container spacing={1}>
+      <Grid item xs={12}>
+        <Typography variant="h6" sx={{mb: '10px'}}>Загрузите Rinex файл:</Typography>
+        <FileUploader id='rinexFile' onChange={onFileChanged("rinex")} />
+      </Grid>
 
-      <Typography>Загрузите Nav файл</Typography>
-      <FileUploader id='navFile' onChange={onFileChanged("nav")} />
-    </Box>
+      <Grid item xs={12}>
+        <Typography variant="h6" sx={{mb: '10px'}}>Загрузите Nav файл:</Typography>
+        <FileUploader id='navFile' onChange={onFileChanged("nav")} />
+      </Grid>
+    </Grid>
   );
 }
 

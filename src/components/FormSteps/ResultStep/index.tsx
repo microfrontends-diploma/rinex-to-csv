@@ -9,11 +9,7 @@ const ResultStep = () => {
     api.rinexToCsvService.getCalculationsResult().then((res) => downloadFile(res, { outputName: "calc_results", format: "zip" }));
   };
 
-  return (
-    <Box>
-      <Button onClick={handleDownloadResult}>Скачать результат</Button>
-    </Box>
-  );
+  return <Button variant="contained" onClick={handleDownloadResult}>Скачать результат</Button>;
 };
 
 export default ResultStep;
